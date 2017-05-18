@@ -8,9 +8,9 @@ public class MenuDesign : ScriptableObject {
 	
 	public List<Menu> menuPrefabs;
 
-	//[HideInInspector,SerializeField]
+	[HideInInspector,SerializeField]
 	public List<Node> nodes=new List<Node>();
-	//[HideInInspector,SerializeField]
+	[HideInInspector,SerializeField]
     public List<Connection> connections=new List<Connection>();
 
 	public void RemoveNode(Node node){

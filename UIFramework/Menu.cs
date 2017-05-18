@@ -22,7 +22,7 @@ public class Menu : MonoBehaviour {
 		root = gameObject;
 	}
 
-	void Start () {
+	void Awake () {
 		buttonEvents = gameObject.GetComponentsInChildren<ButtonEvent>(true);
 	}
 
@@ -42,7 +42,7 @@ public class Menu : MonoBehaviour {
 		StopCoroutine("DisableFadeOut");
 		onFadeIn.Invoke();
 		raycaster.enabled = true;
-		for (int i = 0;buttonEvents != null && i < buttonEvents.Length; i++) {
+		for (int i = 0;i < buttonEvents.Length; i++) {
 			buttonEvents[i].enabled = true;
 		}
 	}
