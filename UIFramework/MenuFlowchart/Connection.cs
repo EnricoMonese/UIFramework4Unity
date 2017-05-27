@@ -10,15 +10,19 @@ public class Connection{
 	public Menu menuTarget;
 	public int buttonOut;
 	public int nodeOut;
-	public int nodeIn;		
+	public int nodeIn;
+	public GUIStyle style;
 
-	public Connection(int menuOut, int buttonOut, int menuIn, Menu menuOrigin, Menu menuTarget){
+	public Connection(int menuOut, int buttonOut, int menuIn, Menu menuOrigin, Menu menuTarget, GUISkin skin){
 		
 		this.menuOrigin = menuOrigin;
 		this.menuTarget = menuTarget;
 		this.nodeOut = menuOut;
 		this.buttonOut = buttonOut;
 		this.nodeIn = menuIn;
+		
+		this.style = skin.button;
+		
 		NodeEditor.RemoveDuplicateConnectionOut(this);
     }
 
@@ -54,8 +58,11 @@ public class Connection{
         null,
         NodeEditor.lineWidht
         );
-        if (Handles.Button((rectIn.center + rectOut.center) * 0.5f, Quaternion.identity, 4, 8, Handles.RectangleCap)){
-               NodeEditor.RemoveConnection(this);
-        }
+	
+        Vector3 btnPos = (rectIn.center + rectOut.center) * 0.5f;
+	float btnSize = 24f;
+	if (GUI.Button (new Rect (btnPos.x - (btnSize* 0.5f), btnPos.y - (btnSize* 0.5f), btnSize, btnSize), "╳", style)) {
+		NodeEditor.RemoveConnection (this);
+	}
     }
 }
