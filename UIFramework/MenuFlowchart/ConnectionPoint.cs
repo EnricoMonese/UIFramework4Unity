@@ -1,4 +1,5 @@
-﻿using System;
+﻿#if UNITY_EDITOR
+using System;
 using UnityEngine;
 
 public enum ConnectionPointType { In, Out }
@@ -52,3 +53,4 @@ public class ConnectionPoint{
         }
     }
 }
+#endif

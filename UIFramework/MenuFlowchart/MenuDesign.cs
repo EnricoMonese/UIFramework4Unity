@@ -1,7 +1,5 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
-using System;
 
 [CreateAssetMenu]
 public class MenuDesign : ScriptableObject {
@@ -13,6 +11,7 @@ public class MenuDesign : ScriptableObject {
 	[HideInInspector,SerializeField]
     public List<Connection> connections=new List<Connection>();
 
+	#if UNITY_EDITOR
 	public void RemoveNode(Node node){
         if (connections != null){
             List<Connection> connectionsToRemove = new List<Connection>();
@@ -39,4 +38,5 @@ public class MenuDesign : ScriptableObject {
         }
 		nodes.Remove(node);
     }	
+	#endif
 }

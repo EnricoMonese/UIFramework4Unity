@@ -1,11 +1,12 @@
-﻿using System;
-using UnityEditor;
+﻿#if UNITY_EDITOR
 using UnityEngine;
 using System.Collections.Generic;
-
+using UnityEditor;
+#endif
 [System.Serializable]
 public class Node{
     
+	#if UNITY_EDITOR
 	public Menu menu;
 
 	public Rect rect,rect2;
@@ -21,6 +22,7 @@ public class Node{
 
 	public Node(Menu menu, Vector2 position, GUISkin skin){
 		this.menu = menu;
+
 		height = 50+(menu.transitionButtons.Length-1)*25;
 		rect = new Rect(position.x, position.y, width, height);
 		inPoint = new ConnectionPoint(ConnectionPointType.In,  skin);
@@ -32,6 +34,7 @@ public class Node{
         selectedNodeStyle = skin.customStyles[0];
 		this.skin = skin;
 		styleShadow = skin.customStyles[1];
+
     }
 
 	public bool ConnectionOutExists(ConnectionPoint con){
@@ -70,7 +73,7 @@ public class Node{
 			}
 		}else if(menu.transitionButtons.Length < outPoint.Count){
 			for (int i = outPoint.Count-1; i > menu.transitionButtons.Length-1; i--) {
-				ConnectionPoint outP = new ConnectionPoint( ConnectionPointType.Out, skin);
+//				ConnectionPoint outP = new ConnectionPoint( ConnectionPointType.Out, skin);
 				outPoint.RemoveAt(i);
 			}
 		}
@@ -131,4 +134,5 @@ public class Node{
     private void OnClickRemoveNode(){
        NodeEditor.RemoveNode(this);
     }
+	#endif
 }

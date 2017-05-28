@@ -24,9 +24,6 @@ public class MenuManagerEditor : Editor {
 		if(GUILayout.Button("Create Menu")){
 			m.CreateMenu();
 		}
-		if(GUILayout.Button("ApplyStyle")){
-			m.UpdateMenuStyle();
-		}
 		if(GUILayout.Button("ApplyPrefabs")){
 			m.ApplyPrefabs();
 		}

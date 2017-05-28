@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿#if UNITY_EDITOR
+using UnityEngine;
 using UnityEditor;
 using System.Collections.Generic;
 
@@ -53,6 +54,13 @@ public class NodeEditor : EditorWindow{
         int heightDivs = Mathf.CeilToInt(position.height / gridSpacing);
 
         Handles.BeginGUI();
+//		Handles.color = new Color(0.3f, 0.3f,0.3f);
+//		Vector3[] vets = new Vector3[4]{
+//			new Vector3(position.width,position.height,0),
+//			new Vector3(position.width,0,0),
+//			new Vector3(0,0,0),
+//			new Vector3(0,position.height,0)};
+//		Handles.DrawAAConvexPolygon(vets);
 
 		Handles.color = new Color(gridColor.r, gridColor.g, gridColor.b, gridOpacity);
         offset += drag * 0.5f;
@@ -184,7 +192,6 @@ public class NodeEditor : EditorWindow{
             menudesign.nodes = new List<Node>();
         }
 		menudesign.nodes.Add(new Node(menu, mousePosition, skin));
-		EditorUtility.SetDirty(menudesign);
     }
 
     private void OnClickInPoint(ConnectionPoint inPoint){
@@ -255,8 +262,7 @@ public class NodeEditor : EditorWindow{
 				break;
 			}
 		}
-		menudesign.connections.Add(new Connection(menuOut,buttonOut,menuIn,menudesign.nodes[menuOut].menu,menudesign.nodes[menuIn].menu,skin));
-		EditorUtility.SetDirty(menudesign);
+		menudesign.connections.Add(new Connection(menuOut,buttonOut,menuIn,menudesign.nodes[menuOut].menu,menudesign.nodes[menuIn].menu, skin));
     }
 
     private void ClearConnectionSelection(){
@@ -265,17 +271,13 @@ public class NodeEditor : EditorWindow{
     }
 
 	public static void RemoveConnection(Connection connection){
-		if(singleton && singleton.menudesign){	
+		if(singleton && singleton.menudesign)	
         	singleton.menudesign.connections.Remove(connection);
-			EditorUtility.SetDirty(singleton.menudesign);
-		}
     }
 
 	public static void RemoveNode(Node node){
-	if(singleton &&singleton.menudesign){
+		if(singleton &&singleton.menudesign)	
 			singleton.menudesign.RemoveNode(node);
-			EditorUtility.SetDirty(singleton.menudesign);
-		}
     }
 
 	public static void RemoveDuplicateConnectionOut(Connection connection){
@@ -286,6 +288,6 @@ public class NodeEditor : EditorWindow{
 				return;
 			}
 		}
-		EditorUtility.SetDirty(singleton.menudesign);
 	}
 }
+#endif
