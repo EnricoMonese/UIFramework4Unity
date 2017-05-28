@@ -1,12 +1,12 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class AudioBotao : MonoBehaviour {
+public class AudioButton : MonoBehaviour {
 
 	public AudioSource audioSource;
-	public AudioClip selecionar, confirmar;
+	public AudioClip selectAudio, confirmAudio;
 	
-	private static AudioBotao singleton;
+	private static AudioButton singleton;
 
 	void Awake(){
 		AudioListener.pause = false;
@@ -14,21 +14,21 @@ public class AudioBotao : MonoBehaviour {
 		audioSource.ignoreListenerPause=true;
 	}
 
-	public void Confirmar(){
-		audioSource.PlayOneShot(confirmar);
+	public void Confirm(){
+		audioSource.PlayOneShot(confirmAudio);
 	}
 
-	public void Selecionar(){
-		audioSource.PlayOneShot(selecionar);
+	public void Select(){
+		audioSource.PlayOneShot(selectAudio);
 	}
 
-	public static void SConfirmar(){
+	public static void sConfirm(){
 		if(singleton)
-			singleton.Confirmar();
+			singleton.Confirm();
 	}
 
-	public static void SSelecionar(){
+	public static void sSelect(){
 		if(singleton)
-			singleton.Selecionar();
+			singleton.Select();
 	}
 }
