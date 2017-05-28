@@ -84,7 +84,7 @@ namespace UIFramework {
 					menus.Add(Instantiate<Menu>(item,transform));
 				else{
 					Menu m = PrefabUtility.InstantiatePrefab(item) as Menu;
-					m.transform.SetParent(transform,true);
+					m.transform.SetParent(transform,false);
 					menus.Add(m);
 				}
 				#else
