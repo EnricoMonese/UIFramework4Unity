@@ -9,7 +9,9 @@ namespace UIFramework {
 	public class MenuManager : MonoBehaviour {
 
 		public MenuDesign menuConf;
-		public bool createStart=true;
+
+		[Tooltip("Destroy current menus gameobjects and add prefabs again")]
+		public bool createOnAwake = true;
 
 		[HideInInspector,SerializeField]
 		public List<Menu> menus;
@@ -54,7 +56,7 @@ namespace UIFramework {
 		}
 
 		void Awake(){
-			if(menus.Count<=0 || createStart)
+			if(menus.Count<=0 || createOnAwake)
 				CreateMenu();
 		}	
 
