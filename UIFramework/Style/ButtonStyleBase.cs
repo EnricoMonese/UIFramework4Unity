@@ -1,27 +1,26 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
+namespace UIFramework {
+	public class ButtonStyleBase : MonoBehaviour {
 
-public class ButtonStyleBase : MonoBehaviour {
+		public ButtonStyleData data;
+		public bool setInAwake;
 
-	public ButtonStyleData data;
-	public bool setInAwake;
-
-	void Reset(){
-		SetNewStyle();
-	}
-		
-	void OnValidate(){
-		SetNewStyle();
-	}
-
-	void Awake(){
-		if(setInAwake)
+		void Reset(){
 			SetNewStyle();
-	}
+		}
 
-	[ContextMenu("SetStyle")]
-	public virtual void SetNewStyle(){
-		if(!data) return;
+		void OnValidate(){
+			SetNewStyle();
+		}
+
+		void Awake(){
+			if(setInAwake)
+				SetNewStyle();
+		}
+
+		[ContextMenu("SetStyle")]
+		public virtual void SetNewStyle(){
+			if(!data) return;
+		}
 	}
 }

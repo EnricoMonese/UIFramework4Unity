@@ -1,11 +1,9 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-using UnityEngine.UI;
+﻿using UnityEngine;
 
-[CreateAssetMenu]
-public class FontStyleData : ScriptableObject {
-	public Font font;
-	public Color color;
-	
+namespace UIFramework {
+	[CreateAssetMenu]
+	public class FontStyleData : ScriptableObject {
+		public Font font;
+		public Color color;	
+	}
 }

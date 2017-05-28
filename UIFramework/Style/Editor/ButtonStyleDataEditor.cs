@@ -5,20 +5,22 @@ using System.Collections.Generic;
 using UnityEngine.SceneManagement;
 using UnityEditorInternal;
 
-[CustomEditor(typeof(ButtonStyleData))]
-public class ButtonStyleDataEditor : Editor {
-	
-	private List<GameObject> objs = new List<GameObject>();
+namespace UIFramework {
+	[CustomEditor(typeof(ButtonStyleData))]
+	public class ButtonStyleDataEditor : Editor {
 
-	public override void OnInspectorGUI (){
-		base.OnInspectorGUI ();
+		private List<GameObject> objs = new List<GameObject>();
 
-		Scene scene = SceneManager.GetActiveScene();
-		scene.GetRootGameObjects(objs);
-		foreach (var item in objs) {
-			foreach (var b in item.GetComponentsInChildren<ButtonStyleBase>(true)) {
-				b.SetNewStyle();
+		public override void OnInspectorGUI (){
+			base.OnInspectorGUI ();
+
+			Scene scene = SceneManager.GetActiveScene();
+			scene.GetRootGameObjects(objs);
+			foreach (var item in objs) {
+				foreach (var b in item.GetComponentsInChildren<ButtonStyleBase>(true)) {
+					b.SetNewStyle();
+				}
 			}
 		}
-	}
+	}	
 }
