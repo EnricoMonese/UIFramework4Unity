@@ -55,13 +55,6 @@ namespace UIFramework {
 			int heightDivs = Mathf.CeilToInt(position.height / gridSpacing);
 
 			Handles.BeginGUI();
-			//		Handles.color = new Color(0.3f, 0.3f,0.3f);
-			//		Vector3[] vets = new Vector3[4]{
-			//			new Vector3(position.width,position.height,0),
-			//			new Vector3(position.width,0,0),
-			//			new Vector3(0,0,0),
-			//			new Vector3(0,position.height,0)};
-			//		Handles.DrawAAConvexPolygon(vets);
 
 			Handles.color = new Color(gridColor.r, gridColor.g, gridColor.b, gridOpacity);
 			offset += drag * 0.5f;
@@ -193,6 +186,7 @@ namespace UIFramework {
 				menudesign.nodes = new List<Node>();
 			}
 			menudesign.nodes.Add(new Node(menu, mousePosition, skin));
+			EditorUtility.SetDirty (menudesign);
 		}
 
 		private void OnClickInPoint(ConnectionPoint inPoint){
@@ -264,6 +258,7 @@ namespace UIFramework {
 				}
 			}
 			menudesign.connections.Add(new Connection(menuOut,buttonOut,menuIn,menudesign.nodes[menuOut].menu,menudesign.nodes[menuIn].menu, skin));
+			EditorUtility.SetDirty (menudesign);
 		}
 
 		private void ClearConnectionSelection(){
@@ -272,13 +267,17 @@ namespace UIFramework {
 		}
 
 		public static void RemoveConnection(Connection connection){
-			if(singleton && singleton.menudesign)	
-				singleton.menudesign.connections.Remove(connection);
+			if (singleton && singleton.menudesign) {
+				singleton.menudesign.connections.Remove (connection);
+				EditorUtility.SetDirty (singleton.menudesign);
+			}
 		}
 
 		public static void RemoveNode(Node node){
-			if(singleton &&singleton.menudesign)	
-				singleton.menudesign.RemoveNode(node);
+			if (singleton && singleton.menudesign) {
+				singleton.menudesign.RemoveNode (node);
+				EditorUtility.SetDirty (singleton.menudesign);
+			}
 		}
 
 		public static void RemoveDuplicateConnectionOut(Connection connection){
@@ -289,6 +288,7 @@ namespace UIFramework {
 					return;
 				}
 			}
+			EditorUtility.SetDirty (singleton.menudesign);
 		}
 	}
 }
