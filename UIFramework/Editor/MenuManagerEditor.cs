@@ -24,7 +24,7 @@ namespace UIFramework {
 			if(GUILayout.Button("Create Menu")){
 				m.CreateMenu();
 			}
-			if(GUILayout.Button("ApplyPrefabs")){
+			if(GUILayout.Button("ApplyPrefabs") && EditorUtility.DisplayDialog("Overwrite prefabs","This will overwrite your current prefabs!\nApply prefabs?","Apply","Don't apply")){
 				m.ApplyPrefabs();
 			}
 			GUILayout.EndHorizontal();
