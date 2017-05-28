@@ -8,16 +8,20 @@ namespace UIFramework {
 		public GameObject firstSelected;
 
 		public Button[] transitionButtons;
-		public UnityEvent onFadeIn,onFadeOut;
+		public UnityEvent onEnter,onEntered,onLeave,onLeft;
 
 		public void Disable(){
+			onLeave.Invoke ();
 			gameObject.SetActive(false);
+			onLeft.Invoke ();
 		}
 
 		public void Enable(){
+			onEnter.Invoke ();
 			gameObject.SetActive(true);
 			if(EventSystem.current)
 				EventSystem.current.SetSelectedGameObject(firstSelected);
+			onEntered.Invoke ();
 		}
 	}	
 }
