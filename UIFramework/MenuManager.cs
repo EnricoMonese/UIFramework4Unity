@@ -64,7 +64,7 @@ namespace UIFramework {
 			Init();
 		}
 
-		[ContextMenu("CreateMenu")]
+		[ContextMenu("Create Menu")]
 		public void CreateMenu(){
 			foreach (var item in menus) {
 				if(item != null) {
