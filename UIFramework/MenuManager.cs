@@ -80,20 +80,25 @@ namespace UIFramework {
 			menus.Clear();
 			foreach (var item in menuConf.menuPrefabs) {
 				#if UNITY_EDITOR
-				if(Application.isPlaying)
-					menus.Add(Instantiate<Menu>(item,transform));
-				else{
+				if(Application.isPlaying){
+					Menu m = Instantiate<Menu>(item,transform);
+					m.name = item.name;
+					menus.Add(m);
+				}else{
 					Menu m = PrefabUtility.InstantiatePrefab(item) as Menu;
 					m.transform.SetParent(transform,false);
 					menus.Add(m);
 				}
 				#else
-				menus.Add(Instantiate<Menu>(item,transform));
+				Menu m = Instantiate<Menu>(item,transform);
+				m.name = item.name;
+				menus.Add(m);
 				#endif
 			}
 		}
 
 		void LinkTransitions(){
+			transitions.Clear();
 			foreach (var item in menuConf.connections) {
 				transitions.Add(new Transition(item,menus));
 			}
